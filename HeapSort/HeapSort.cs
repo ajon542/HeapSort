@@ -1,23 +1,11 @@
 ﻿
 namespace HeapSort
 {
-    public class Heap
-    {
-        private int[] data;
-
-        public Heap()
-        {
-            
-        }
-    }
-
-
     /// <summary>
     /// This class contains a combination of heap sorting operations.
     /// </summary>
     /// <remarks>
-    /// Both recursive and iterative implementations of the algorithm are provided
-    /// for a MaxHeap.
+    /// Recursive and iterative implementations of the algorithm are provided for a max-heap.
     /// </remarks>
     public class HeapSort
     {

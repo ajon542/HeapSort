@@ -1,5 +1,5 @@
 # HeapSort
-Implementation of the HeapSort algorithm based on the MIT "Introcduction to Algorithms" course. This is more or less a test bed for the exercises and pseudocode in the book.
+Implementation of the HeapSort algorithm based on the MIT "Introduction to Algorithms" course. This is more or less a test bed for the exercises and pseudocode in the book.
 
 # Notes and references
 
