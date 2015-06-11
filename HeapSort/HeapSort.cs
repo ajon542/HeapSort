@@ -20,7 +20,7 @@ namespace HeapSort
             return (i << 1) + 1;
         }
 
-        public void Sort(int[] arr)
+        public void SortRecursively(int[] arr)
         {
             heapSize = arr.Length - 1;
 
@@ -33,6 +33,19 @@ namespace HeapSort
             }
         }
 
+        public void SortIteratively(int[] arr)
+        {
+            heapSize = arr.Length - 1;
+
+            BuildMaxHeapIterative(arr);
+            for (int i = arr.Length - 1; i >= 2; --i)
+            {
+                Swap(arr, 1, i);
+                heapSize--;
+                MaxHeapifyIterative(arr, 1);
+            }
+        }
+
         /// <summary>
         /// In order to maintain the max-heap property, we call the procedure MaxHeapify.
         /// Its inputs are an array A and an index i into the array. When it is called, MaxHeapify
@@ -41,6 +54,13 @@ namespace HeapSort
         /// property. MaxHeapify lets the value at A[i] “float down” in the max-heap so
         /// that the subtree rooted at index i obeys the max-heap property.
         /// </summary>
+        /// <remarks>
+        /// These recursive/iterative methods could be part of an interface that is passed
+        /// into the HeapSort object so the caller can define how this object behaves.
+        /// Additionally, we could pass in methods to produce a min heap instead.
+        /// However, I am focusing on the algorithm and exercises rather than having perfect
+        /// design.
+        /// </remarks>
         /// <param name="arr"></param>
         /// <param name="i"></param>
         private void MaxHeapifyRecursive(int[] arr, int i)
@@ -101,7 +121,6 @@ namespace HeapSort
             int l = Left(i);
             int r = Right(i);
 
-            // TODO: Potential array bounds error.
             // Determine which child to swap with.
             if ((l <= heapSize) && (arr[l] > arr[i]))
             {

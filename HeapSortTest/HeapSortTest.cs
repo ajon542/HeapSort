@@ -143,5 +143,29 @@
 
             CollectionAssert.AreEqual(arr1, arr2);
         }
+
+        [TestMethod]
+        public void TestMethod9()
+        {
+            const int ItemCount = 1000;
+
+            Random rnd = new Random();
+
+            int[] arr1 = new int[ItemCount];
+            int[] arr2 = new int[ItemCount];
+
+            for (int i = 0; i < ItemCount; ++i)
+            {
+                int random = rnd.Next(ItemCount);
+                arr1[i] = random;
+                arr2[i] = random;
+            }
+
+            HeapSort sort = new HeapSort();
+            sort.SortRecursively(arr1);
+            sort.SortIteratively(arr2);
+
+            CollectionAssert.AreEqual(arr1, arr2);
+        }
     }
 }

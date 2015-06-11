@@ -8,7 +8,7 @@ namespace HeapSort
         {
             int[] arr = { -1, 9, 8, 7, 6 };
             HeapSort heapSort = new HeapSort();
-            heapSort.Sort(arr);
+            heapSort.SortRecursively(arr);
 
 
             Console.ReadLine();
