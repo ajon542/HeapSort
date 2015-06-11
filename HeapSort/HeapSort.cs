@@ -33,7 +33,6 @@ namespace HeapSort
             }
         }
 
-
         /// <summary>
         /// In order to maintain the max-heap property, we call the procedure MaxHeapify.
         /// Its inputs are an array A and an index i into the array. When it is called, MaxHeapify
@@ -44,7 +43,7 @@ namespace HeapSort
         /// </summary>
         /// <param name="arr"></param>
         /// <param name="i"></param>
-        public void MaxHeapifyRecursive(int[] arr, int i)
+        private void MaxHeapifyRecursive(int[] arr, int i)
         {
             int largest = DetermineLargestChild(arr, i);
 
@@ -55,7 +54,7 @@ namespace HeapSort
             }
         }
 
-        public void MaxHeapifyIterative(int[] arr, int i)
+        private void MaxHeapifyIterative(int[] arr, int i)
         {
             int largest = DetermineLargestChild(arr, i);
 
@@ -73,7 +72,7 @@ namespace HeapSort
             }
         }
 
-        public void BuildMaxHeapRecursive(int[] arr)
+        private void BuildMaxHeapRecursive(int[] arr)
         {
             for (int i = (arr.Length/2); i >= 1; --i)
             {
@@ -81,7 +80,7 @@ namespace HeapSort
             }
         }
 
-        public void BuildMaxHeapIterative(int[] arr)
+        private void BuildMaxHeapIterative(int[] arr)
         {
             for (int i = (arr.Length / 2); i >= 1; --i)
             {
