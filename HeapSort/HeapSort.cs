@@ -1,37 +1,65 @@
 ﻿
 namespace HeapSort
 {
+    public class Heap
+    {
+        private int[] data;
+
+        public Heap()
+        {
+            
+        }
+    }
+
+
+    /// <summary>
+    /// This class contains a combination of heap sorting operations.
+    /// </summary>
+    /// <remarks>
+    /// Both recursive and iterative implementations of the algorithm are provided
+    /// for a MaxHeap.
+    /// </remarks>
     public class HeapSort
     {
         private int heapSize;
-        
-        private int Parent(int i)
-        {
-            return i >> 1;
-        }
 
-        private int Left(int i)
-        {
-            return (i << 1);
-        }
-
-        private int Right(int i)
-        {
-            return (i << 1) + 1;
-        }
+        #region Recursive Implementation
 
         public void SortRecursively(int[] arr)
         {
             heapSize = arr.Length - 1;
 
             BuildMaxHeapRecursive(arr);
-            for(int i = arr.Length - 1; i >= 2; --i)
+            for (int i = arr.Length - 1; i >= 2; --i)
             {
                 Swap(arr, 1, i);
                 heapSize--;
                 MaxHeapifyRecursive(arr, 1);
             }
         }
+
+        private void BuildMaxHeapRecursive(int[] arr)
+        {
+            for (int i = (arr.Length / 2); i >= 1; --i)
+            {
+                MaxHeapifyRecursive(arr, i);
+            }
+        }
+
+        private void MaxHeapifyRecursive(int[] arr, int i)
+        {
+            int largest = DetermineLargestChild(arr, i);
+
+            if (largest != i)
+            {
+                Swap(arr, i, largest);
+                MaxHeapifyRecursive(arr, largest);
+            }
+        }
+
+        #endregion
+
+        #region Iterative Implementation
 
         public void SortIteratively(int[] arr)
         {
@@ -46,31 +74,11 @@ namespace HeapSort
             }
         }
 
-        /// <summary>
-        /// In order to maintain the max-heap property, we call the procedure MaxHeapify.
-        /// Its inputs are an array A and an index i into the array. When it is called, MaxHeapify
-        /// assumes that the binary trees rooted at LEFT(i) and RIGHT(i) are maxheaps,
-        /// but that A[i] might be smaller than its children, thus violating the max-heap
-        /// property. MaxHeapify lets the value at A[i] “float down” in the max-heap so
-        /// that the subtree rooted at index i obeys the max-heap property.
-        /// </summary>
-        /// <remarks>
-        /// These recursive/iterative methods could be part of an interface that is passed
-        /// into the HeapSort object so the caller can define how this object behaves.
-        /// Additionally, we could pass in methods to produce a min heap instead.
-        /// However, I am focusing on the algorithm and exercises rather than having perfect
-        /// design.
-        /// </remarks>
-        /// <param name="arr"></param>
-        /// <param name="i"></param>
-        private void MaxHeapifyRecursive(int[] arr, int i)
+        private void BuildMaxHeapIterative(int[] arr)
         {
-            int largest = DetermineLargestChild(arr, i);
-
-            if (largest != i)
+            for (int i = (arr.Length / 2); i >= 1; --i)
             {
-                Swap(arr, i, largest);
-                MaxHeapifyRecursive(arr, largest);
+                MaxHeapifyIterative(arr, i);
             }
         }
 
@@ -82,7 +90,7 @@ namespace HeapSort
             {
                 // Determined there was a child with a larger value so swap them.
                 Swap(arr, i, largest);
-                
+
                 // Update the index to reflect the change.
                 i = largest;
 
@@ -92,21 +100,9 @@ namespace HeapSort
             }
         }
 
-        private void BuildMaxHeapRecursive(int[] arr)
-        {
-            for (int i = (arr.Length/2); i >= 1; --i)
-            {
-                MaxHeapifyRecursive(arr, i);
-            }
-        }
+        #endregion
 
-        private void BuildMaxHeapIterative(int[] arr)
-        {
-            for (int i = (arr.Length / 2); i >= 1; --i)
-            {
-                MaxHeapifyIterative(arr, i);
-            }
-        }
+        #region Helper Methods
 
         /// <summary>
         /// Determines which child has the largest value. If the parent has the largest
@@ -142,11 +138,28 @@ namespace HeapSort
             return largest;
         }
 
+        private int Parent(int i)
+        {
+            return i >> 1;
+        }
+
+        private int Left(int i)
+        {
+            return (i << 1);
+        }
+
+        private int Right(int i)
+        {
+            return (i << 1) + 1;
+        }
+
         private void Swap(int[] arr, int a, int b)
         {
             int tmp = arr[a];
             arr[a] = arr[b];
             arr[b] = tmp;
         }
+
+        #endregion
     }
 }
