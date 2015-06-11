@@ -46,9 +46,6 @@ namespace HeapSort
         /// <param name="i"></param>
         public void MaxHeapifyRecursive(int[] arr, int i)
         {
-            // TODO: For now assume the heapsize is the array length.
-            //heapSize = arr.Length - 1;
-
             int largest = DetermineLargestChild(arr, i);
 
             if (largest != i)
@@ -60,9 +57,6 @@ namespace HeapSort
 
         public void MaxHeapifyIterative(int[] arr, int i)
         {
-            // TODO: For now assume the heapsize is the array length.
-            heapSize = arr.Length - 1;
-
             int largest = DetermineLargestChild(arr, i);
 
             while (largest != i)
@@ -81,8 +75,6 @@ namespace HeapSort
 
         public void BuildMaxHeapRecursive(int[] arr)
         {
-            //heapSize = arr.Length - 1;
-
             for (int i = (arr.Length/2); i >= 1; --i)
             {
                 MaxHeapifyRecursive(arr, i);
@@ -91,8 +83,6 @@ namespace HeapSort
 
         public void BuildMaxHeapIterative(int[] arr)
         {
-            heapSize = arr.Length - 1;
-
             for (int i = (arr.Length / 2); i >= 1; --i)
             {
                 MaxHeapifyIterative(arr, i);

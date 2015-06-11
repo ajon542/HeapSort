@@ -7,6 +7,18 @@
     [TestClass]
     public class HeapSortTest
     {
+        private HeapSort Init(int heapSize)
+        {
+            HeapSort sort = new HeapSort();
+
+            // Reflect into the object to set the private field.
+            var prop = sort.GetType().GetField("heapSize", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            prop.SetValue(sort, heapSize);
+
+            return sort;
+        }
+
+
         [TestMethod]
         public void TestMethod1()
         {
@@ -14,7 +26,7 @@
             int[] arr2 = { -1, 4 };
             int[] expected = { -1, 4 };
 
-            HeapSort sort = new HeapSort();
+            HeapSort sort = Init(arr1.Length - 1);
             sort.MaxHeapifyRecursive(arr1, 1);
             sort.MaxHeapifyIterative(arr2, 1);
 
@@ -29,7 +41,7 @@
             int[] arr2 = { -1, 4, 10 };
             int[] expected = { -1, 10, 4 };
 
-            HeapSort sort = new HeapSort();
+            HeapSort sort = Init(arr1.Length - 1);
             sort.MaxHeapifyRecursive(arr1, 1);
             sort.MaxHeapifyIterative(arr2, 1);
 
@@ -44,7 +56,7 @@
             int[] arr2 = { -1, 4, 10, 16 };
             int[] expected = { -1, 16, 10, 4 };
 
-            HeapSort sort = new HeapSort();
+            HeapSort sort = Init(arr1.Length - 1);
             sort.MaxHeapifyRecursive(arr1, 1);
             sort.MaxHeapifyIterative(arr2, 1);
 
@@ -60,7 +72,7 @@
             int[] arr2 = { -1, 16, 4, 10, 14, 7, 9, 3, 2, 8, 1 };
             int[] expected = { -1, 16, 14, 10, 8, 7, 9, 3, 2, 4, 1 };
 
-            HeapSort sort = new HeapSort();
+            HeapSort sort = Init(arr1.Length - 1);
             sort.MaxHeapifyRecursive(arr1, 2);
             sort.MaxHeapifyIterative(arr2, 2);
 
@@ -75,7 +87,7 @@
             int[] arr2 = { -1, 1, 2, 3, 4, 5, 6, 7 };
             int[] expected = { -1, 7, 5, 6, 4, 2, 1, 3 };
 
-            HeapSort sort = new HeapSort();
+            HeapSort sort = Init(arr1.Length - 1);
             sort.BuildMaxHeapRecursive(arr1);
             sort.BuildMaxHeapIterative(arr2);
 
@@ -90,7 +102,7 @@
             int[] arr2 = { -1, 4 };
             int[] expected = { -1, 4 };
 
-            HeapSort sort = new HeapSort();
+            HeapSort sort = Init(arr1.Length - 1);
             sort.BuildMaxHeapRecursive(arr1);
             sort.BuildMaxHeapIterative(arr2);
 
@@ -105,7 +117,7 @@
             int[] arr2 = { -1, 4, 10, 16 };
             int[] expected = { -1, 16, 10, 4 };
 
-            HeapSort sort = new HeapSort();
+            HeapSort sort = Init(arr1.Length - 1);
             sort.BuildMaxHeapRecursive(arr1);
             sort.BuildMaxHeapIterative(arr2);
 
@@ -130,7 +142,7 @@
                 arr2[i] = random;
             }
 
-            HeapSort sort = new HeapSort();
+            HeapSort sort = Init(ItemCount - 1);
             sort.BuildMaxHeapRecursive(arr1);
             sort.BuildMaxHeapIterative(arr2);
 
